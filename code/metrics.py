@@ -9,8 +9,7 @@ def cort_metric(ts1, ts2, k):
     Note: low values of k will weight the distance metric more
     '''
     if len(ts1) != len(ts2):
-        print "lengths of two series are different!"
-        return None
+        raise ValueError('Lengths of time series arrays do not match')
     cort_num = np.sum([(ts1[t+1] - ts1[t])*(ts2[t+1] - ts2[t]) for t in range(len(ts1)-1)])
     cort_denom1 = np.sqrt(np.sum(np.square([ts1[t+1] - ts1[t] for t in range(len(ts1)-1)])))
     cort_denom2 = np.sqrt(np.sum(np.square([ts2[t+1] - ts2[t] for t in range(len(ts2)-1)])))
